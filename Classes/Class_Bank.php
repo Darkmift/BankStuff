@@ -15,6 +15,10 @@ class Bank {
         return $this->name;
     }
 
+    public function get_bank_type() {
+        return $this->bank_type;
+    }
+
     public function get_bank_policy() {
         switch ($this->bank_type) {
             case 1:

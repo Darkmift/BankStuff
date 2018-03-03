@@ -12,9 +12,10 @@ class User {
     private $name = '';
     private $inBank = '';
 
-    public function __construct($name, $start_amount) {
+    public function __construct($name, $start_amount, $inBank) {
         $this->name = $name;
         $this->amount = $start_amount;
+        $this->inBank = $inBank;
     }
 
     public function getAmount() {
