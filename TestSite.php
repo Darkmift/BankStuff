@@ -1,4 +1,14 @@
 <?php
+session_start();
+
+function setName() {
+    if (isset($_POST['userName']) && !isset($_POST['userName']) == 'none' && !empty($_POST['userName'])) {
+        $_SESSION['username'] = $_POST['userName'];
+    } else {
+        $_SESSION['username'] = 'IsBrokenz';
+    }
+}
+
 //set caller for page
 $GLOBALS['caller_page'] = basename(__FILE__, '.php');
 include 'HTML_Page_frame/header.php';
@@ -14,7 +24,8 @@ include 'Classes/Class_users.php';
                 </h1>
                 <hr style="text-align: left;">
                 <?php
-                $name = $_POST['userName'];
+                $name = isset($_SESSION['username']);
+                echo $name . "<hr>";
                 $madBank = new Bank('madBank', 3);
                 echo $madBank->get_Name() . '<br>';
                 echo $madBank->allow_users_to_admin() . '<br>';
@@ -27,7 +38,7 @@ include 'Classes/Class_users.php';
                 ?>
                 <hr>
                 <form name="DaForm" action="TestSite.php" method="POST">
-                    <input type="hidden" name="userName">
+                    <input type="hidden" name="userName" value="none">
                 </form>
             </div>
         </div>

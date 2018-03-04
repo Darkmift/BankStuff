@@ -10,22 +10,30 @@ if (count < 2) {
 }
 function runOnce() {
     var url = 'https://randomuser.me/api/';
-    var randName = "";
     //ajax which load content to block
     $.ajax({
         url: 'https://randomuser.me/api/',
         dataType: 'json',
         success: function (data) {
             console.log(data.results[0].name);
-            randName =
+            var randName =
                     capitalizeFirstLetter(data.results[0].name.title) + ' ' +
                     capitalizeFirstLetter(data.results[0].name.first) + ' ' +
                     capitalizeFirstLetter(data.results[0].name.last);
             console.log(randName);
             $('[name="userName"]').val(randName);
-            $('[name="DaForm"]').submit();
+            $.post("TestSite.php",
+                    {
+                        userName: randName
+                    }, function name(data) {
+            });
         }
     });
+//    alert('Pre Submit'),
+//            $('[name="DaForm"]').submit();
+//            alert('Post Submit');
+
+
 }
 
 
